@@ -62,10 +62,15 @@ export function CTA() {
                       <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold font-display gradient-text">Message Sent!</h3>
+                  <h3 className="text-2xl font-bold font-display gradient-text">Got it &mdash; thank you!</h3>
                   <p className="mt-3 text-muted leading-relaxed">
-                    I&apos;ll get back to you within 24 hours with your free demo ad
-                    concept.
+                    Your request is in. I&apos;ll personally review your store and
+                    email you a free demo concept{" "}
+                    <span className="text-foreground font-semibold">within 24 hours</span>{" "}
+                    &mdash; often much sooner.
+                  </p>
+                  <p className="mt-3 text-sm text-accent font-display tracking-wide">
+                    Keep an eye on your inbox.
                   </p>
                 </div>
               ) : (
