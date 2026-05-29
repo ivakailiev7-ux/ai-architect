@@ -72,35 +72,17 @@ export async function POST(request: Request) {
       }),
     });
 
-    const raw = await upstream.text();
-    let data: { id?: string; message?: string; name?: string } | null = null;
-    try {
-      data = JSON.parse(raw);
-    } catch {
-      // non-JSON response — leave data null and surface raw text in diagnostics
-    }
-
-    if (upstream.ok && data?.id) {
+    if (upstream.ok) {
       return Response.json({ success: true });
     }
 
-    // TEMPORARY diagnostics — surfaces Resend's error so the first live test can
-    // confirm the setup. Removed once the pipeline is verified end-to-end.
     return Response.json(
-      {
-        success: false,
-        message: "Could not send your message.",
-        _debug: { status: upstream.status, resend: data ?? raw.slice(0, 300) },
-      },
+      { success: false, message: "Could not send your message." },
       { status: 502 },
     );
-  } catch (err) {
+  } catch {
     return Response.json(
-      {
-        success: false,
-        message: "Something went wrong on our end.",
-        _debug: { error: err instanceof Error ? `${err.name}: ${err.message}` : String(err) },
-      },
+      { success: false, message: "Something went wrong on our end." },
       { status: 500 },
     );
   }
