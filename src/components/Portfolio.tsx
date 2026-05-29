@@ -30,7 +30,7 @@ export function Portfolio() {
             Ads that <span className="ai-text gradient-text-animated">stop the scroll</span>
           </h2>
           <p className="mt-6 mx-auto max-w-2xl text-muted text-lg leading-relaxed">
-            Real AI-generated video ads built for fitness and supplement brands.
+            AI-generated video ads, engineered for fitness and supplement brands.
             Every video is crafted to convert browsers into buyers.
           </p>
         </div>
@@ -71,10 +71,19 @@ export function Portfolio() {
           ))}
         </div>
 
-        {/* Note */}
-        <p className="mt-10 text-center text-sm text-muted/40 italic font-display">
-          Video placeholders &mdash; your real content will go here
-        </p>
+        {/* Launch CTA */}
+        <div className="mt-12 flex items-center justify-center gap-3">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-accent/60 animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          </span>
+          <p className="text-sm text-muted font-display tracking-wide">
+            First demo reels dropping soon &mdash;{" "}
+            <a href="#contact" className="text-accent font-semibold hover:text-accent-light transition-colors">
+              claim a free one for your brand
+            </a>
+          </p>
+        </div>
       </div>
     </section>
   );
