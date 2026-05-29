@@ -2,12 +2,33 @@
 
 import { useState, type FormEvent } from "react";
 
-export function CTA() {
-  const [submitted, setSubmitted] = useState(false);
+type Status = "idle" | "submitting" | "success" | "error";
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+export function CTA() {
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -34,7 +55,7 @@ export function CTA() {
                 </p>
               </div>
 
-              {submitted ? (
+              {status === "success" ? (
                 <div className="text-center py-8">
                   <div className="relative mx-auto h-18 w-18 rounded-full bg-gradient-to-br from-accent/15 to-purple/15 border border-accent/20 flex items-center justify-center mb-5">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-accent">
@@ -95,6 +116,7 @@ export function CTA() {
                       id="website"
                       name="website"
                       type="url"
+                      required
                       placeholder="https://yourstore.com"
                       className="w-full rounded-xl border border-surface-border/60 bg-surface/80 backdrop-blur-sm px-4 py-3.5 text-sm text-foreground placeholder:text-muted/40 outline-none transition-all focus:border-accent/50 focus:ring-1 focus:ring-accent/20 focus:bg-surface"
                     />
@@ -116,12 +138,36 @@ export function CTA() {
                     />
                   </div>
 
+                  {/* Honeypot — hidden from humans, catches bots */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    style={{ display: "none" }}
+                    aria-hidden="true"
+                  />
+
                   <button
                     type="submit"
-                    className="w-full rounded-full btn-gradient py-4 text-base font-bold font-display text-background tracking-wide glow-multi"
+                    disabled={status === "submitting"}
+                    className="w-full rounded-full btn-gradient py-4 text-base font-bold font-display text-background tracking-wide glow-multi disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Get My Free Demo Ad
+                    {status === "submitting" ? "Sending..." : "Get My Free Demo Ad"}
                   </button>
+
+                  {status === "error" && (
+                    <p className="text-center text-sm text-pink font-display">
+                      Something went wrong. Please try again, or email me directly at{" "}
+                      <a
+                        href="mailto:ivakailiev7@gmail.com"
+                        className="underline hover:text-accent transition-colors"
+                      >
+                        ivakailiev7@gmail.com
+                      </a>
+                      .
+                    </p>
+                  )}
 
                   <p className="text-center text-xs text-muted/60 font-display">
                     100% free. No credit card required. I&apos;ll respond within 24 hours.
