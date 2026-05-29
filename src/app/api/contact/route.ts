@@ -1,11 +1,27 @@
-// Server-side contact endpoint. The Web3Forms access key is read from a server-only
-// environment variable (WEB3FORMS_ACCESS_KEY) — it never ships to the browser and is
-// never committed to the repo. The request to Web3Forms is made from the server, so the
-// client only ever talks to this same-origin route.
-export async function POST(request: Request) {
-  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
+// Server-side contact endpoint. Lead notifications are sent through Resend
+// (https://resend.com) using a server-only API key (RESEND_API_KEY). The key
+// never ships to the browser and is never committed to the repo — it lives in a
+// Vercel environment variable (Production) and in the gitignored .env.local for
+// local development. Resend's API is designed for server-to-server calls, so —
+// unlike the previous provider — it is reachable from Vercel's serverless runtime.
 
-  if (!accessKey) {
+// Lead notifications go to the business owner's inbox. With no custom domain
+// verified in Resend, the recipient must match the Resend account email, and the
+// "from" address must be Resend's onboarding sender.
+const LEAD_RECIPIENT = "ivakailiev7@gmail.com";
+const FROM_ADDRESS = "AI Architect <onboarding@resend.dev>";
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+export async function POST(request: Request) {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
     return Response.json(
       { success: false, message: "Email service is not configured." },
       { status: 500 },
@@ -33,40 +49,48 @@ export async function POST(request: Request) {
       );
     }
 
-    const upstream = await fetch("https://api.web3forms.com/submit", {
+    const html = `
+      <h2>New Free Demo request — AI Architect</h2>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Store / Product URL:</strong> ${escapeHtml(website)}</p>
+      <p><strong>Message:</strong><br>${escapeHtml(message) || "(none provided)"}</p>
+    `;
+
+    const upstream = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
       body: JSON.stringify({
-        access_key: accessKey,
-        subject: "New Free Demo request — AI Architect",
-        from_name: "AI Architect Website",
-        name,
-        email,
-        website,
-        message,
+        from: FROM_ADDRESS,
+        to: [LEAD_RECIPIENT],
+        reply_to: email,
+        subject: `New Free Demo request — ${name}`,
+        html,
       }),
     });
 
     const raw = await upstream.text();
-    let data: { success?: boolean; message?: string } | null = null;
+    let data: { id?: string; message?: string; name?: string } | null = null;
     try {
       data = JSON.parse(raw);
     } catch {
-      // upstream did not return JSON (e.g. an HTML challenge page)
+      // non-JSON response — leave data null and surface raw text in diagnostics
     }
 
-    if (data?.success) {
+    if (upstream.ok && data?.id) {
       return Response.json({ success: true });
     }
 
+    // TEMPORARY diagnostics — surfaces Resend's error so the first live test can
+    // confirm the setup. Removed once the pipeline is verified end-to-end.
     return Response.json(
       {
         success: false,
-        message: data?.message ?? "Could not send your message.",
-        _debug: { upstreamStatus: upstream.status, upstreamBody: raw.slice(0, 400) },
+        message: "Could not send your message.",
+        _debug: { status: upstream.status, resend: data ?? raw.slice(0, 300) },
       },
       { status: 502 },
     );
