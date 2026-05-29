@@ -50,19 +50,33 @@ export async function POST(request: Request) {
       }),
     });
 
-    const data = await upstream.json();
+    const raw = await upstream.text();
+    let data: { success?: boolean; message?: string } | null = null;
+    try {
+      data = JSON.parse(raw);
+    } catch {
+      // upstream did not return JSON (e.g. an HTML challenge page)
+    }
 
     if (data?.success) {
       return Response.json({ success: true });
     }
 
     return Response.json(
-      { success: false, message: data?.message ?? "Could not send your message." },
+      {
+        success: false,
+        message: data?.message ?? "Could not send your message.",
+        _debug: { upstreamStatus: upstream.status, upstreamBody: raw.slice(0, 400) },
+      },
       { status: 502 },
     );
-  } catch {
+  } catch (err) {
     return Response.json(
-      { success: false, message: "Something went wrong on our end." },
+      {
+        success: false,
+        message: "Something went wrong on our end.",
+        _debug: { error: err instanceof Error ? `${err.name}: ${err.message}` : String(err) },
+      },
       { status: 500 },
     );
   }
