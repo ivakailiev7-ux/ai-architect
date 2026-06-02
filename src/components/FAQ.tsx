@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "Are AI-generated videos actually effective for ads?",
     answer:
-      "Absolutely. UGC-style video ads consistently outperform polished brand creatives, delivering 4x higher click-through rates and 50% lower cost-per-acquisition. AI-generated UGC matches or outperforms traditional UGC on key metrics like CPA, CTR, and ROAS — and you get results in days instead of weeks.",
+      "On short-form platforms, UGC-style video ads tend to outperform polished brand creatives — it's why they dominate Meta and TikTok feeds. AI-generated UGC can match traditional UGC on the metrics that matter (CPA, CTR, ROAS), and you get it in days instead of weeks, at a fraction of the cost.",
   },
   {
     question: "Do you only work with fitness and supplement brands?",

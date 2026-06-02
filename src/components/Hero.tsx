@@ -14,29 +14,6 @@ export function Hero() {
       <div className="absolute inset-0 noise pointer-events-none" />
 
       {/* ── Floating 3D Elements ── */}
-      {/* Left floating card */}
-      <div className="hidden lg:block absolute left-[5%] top-[35%] animate-float opacity-40">
-        <div className="glass-card rounded-2xl p-4 w-48">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <span className="text-[10px] text-accent font-display uppercase tracking-wider">Live Stats</span>
-          </div>
-          <div className="text-2xl font-bold font-display gradient-text">+340%</div>
-          <div className="text-[10px] text-muted mt-1">ROAS increase</div>
-        </div>
-      </div>
-
-      {/* Right floating card */}
-      <div className="hidden lg:block absolute right-[5%] top-[45%] animate-float-reverse opacity-40">
-        <div className="glass-card rounded-2xl p-4 w-44">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 rounded-full bg-purple" />
-            <span className="text-[10px] text-purple-light font-display uppercase tracking-wider">CTR</span>
-          </div>
-          <div className="text-2xl font-bold font-display gradient-text-vivid">4.2%</div>
-          <div className="text-[10px] text-muted mt-1">avg. click rate</div>
-        </div>
-      </div>
 
       {/* Top-right floating element */}
       <div className="hidden lg:block absolute right-[15%] top-[20%] animate-float-slow opacity-30">
@@ -107,9 +84,9 @@ export function Hero() {
         <div className="mt-20 animate-fade-in-up delay-600">
           <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto">
             {[
-              { value: "4x", label: "Higher CTR" },
-              { value: "80%", label: "Cost Savings" },
               { value: "48h", label: "Turnaround" },
+              { value: "5–10+", label: "Ad Variations" },
+              { value: "From $99", label: "Per Video" },
             ].map((stat, i) => (
               <div key={stat.label} className="relative group">
                 <div className="glass-card rounded-2xl p-5 text-center">

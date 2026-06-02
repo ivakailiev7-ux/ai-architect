@@ -1,55 +1,66 @@
+// Stripe Payment Links (recurring monthly subscriptions). These are currently
+// Stripe TEST-mode links (note "test_" in the URL) — they accept test cards
+// only, for verifying the funnel end to end. Before going live for real money,
+// recreate the three links in Stripe LIVE mode and swap the URLs below. Each
+// link's "After payment" redirect points back to /brief?plan=<tier>, so the
+// customer lands on the brief form right after paying.
+const STRIPE_LINKS: Record<string, string> = {
+  Starter: "https://buy.stripe.com/test_7sY14h0iu4LM8aV0Jn0Ny00",
+  Growth: "https://buy.stripe.com/test_bJebIV8P00vwgHreAd0Ny01",
+  Scale: "https://buy.stripe.com/test_3cI5kx9T45PQfDncs50Ny02",
+};
+
 const packages = [
   {
     name: "Starter",
-    price: "$497",
+    price: "$129",
     period: "/month",
-    description: "Perfect for brands testing video ads for the first time.",
+    description: "Test AI video ads for your brand, risk-free.",
     features: [
       "4 AI video ads per month",
-      "4 ad copy variations",
-      "9:16 vertical format (Reels/TikTok/Shorts)",
-      "1 round of revisions per video",
+      "A scroll-stopping hook on every ad",
+      "9:16 vertical (Reels / TikTok / Shorts)",
+      "1 round of revisions per ad",
       "48-hour turnaround",
       "Commercial usage rights",
     ],
-    cta: "Get Started",
+    cta: "Subscribe",
     highlighted: false,
   },
   {
     name: "Growth",
-    price: "$997",
+    price: "$349",
     period: "/month",
     description: "For brands ready to scale with diverse creative angles.",
     features: [
-      "8 AI video ads per month",
-      "A/B hook variations for each",
+      "10 AI video ads per month",
+      "A/B hook variations on every ad",
       "Multiple formats (9:16 + 1:1)",
-      "Monthly creative strategy call",
+      "Virality pre-screen before delivery",
       "Competitor ad analysis",
-      "2 rounds of revisions per video",
-      "Priority turnaround (36h)",
+      "2 rounds of revisions per ad",
+      "Priority 36-hour turnaround",
       "Commercial usage rights",
     ],
-    cta: "Scale Your Ads",
+    cta: "Subscribe",
     highlighted: true,
   },
   {
     name: "Scale",
-    price: "$1,997",
+    price: "$799",
     period: "/month",
-    description: "Full creative partnership for brands spending on ads.",
+    description: "A full creative engine for brands spending on ads.",
     features: [
-      "16+ AI video ads per month",
+      "20+ AI video ads per month",
       "Unlimited hook & CTA variations",
       "All formats (9:16, 1:1, 16:9)",
-      "Weekly creative strategy",
+      "Monthly iteration on your ad performance",
       "Competitor & trend monitoring",
       "Unlimited revisions",
       "24-hour priority turnaround",
-      "Dedicated Slack channel",
       "Commercial usage rights",
     ],
-    cta: "Let's Talk",
+    cta: "Subscribe",
     highlighted: false,
   },
 ];
@@ -73,7 +84,9 @@ export function Packages() {
             Simple, <span className="ai-text gradient-text-animated">transparent</span> pricing
           </h2>
           <p className="mt-6 mx-auto max-w-2xl text-muted text-lg leading-relaxed">
-            No hidden fees. No long-term contracts. Cancel anytime.
+            No calls, no contracts. Subscribe in a couple of clicks, send a short
+            brief, and get your first ads within 48 hours. Not happy with your
+            first month? Full refund &mdash; no questions asked.
           </p>
         </div>
 
@@ -147,7 +160,7 @@ export function Packages() {
 
                 {/* CTA */}
                 <a
-                  href="#contact"
+                  href={STRIPE_LINKS[pkg.name] ?? "/brief"}
                   className={`block w-full rounded-full py-3.5 text-center text-sm font-bold font-display tracking-wide transition-all duration-400 ${
                     pkg.highlighted
                       ? "btn-gradient text-background"
@@ -163,11 +176,11 @@ export function Packages() {
 
         {/* Note */}
         <p className="mt-12 text-center text-sm text-muted font-display">
-          Need a custom package?{" "}
-          <a href="#contact" className="gradient-text font-semibold hover:text-glow transition-all">
-            Let&apos;s talk
+          Not sure which tier?{" "}
+          <a href={STRIPE_LINKS.Growth} className="gradient-text font-semibold hover:text-glow transition-all">
+            Start with Growth
           </a>{" "}
-          about what works for your brand.
+          &mdash; switch or cancel anytime.
         </p>
       </div>
     </section>

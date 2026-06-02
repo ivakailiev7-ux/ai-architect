@@ -17,7 +17,7 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "AI Architect | AI Video Ads for Fitness Brands",
   description:
-    "Premium AI-powered video ads that sell. We create high-converting UGC and product videos for fitness & supplement Shopify brands. 4x higher CTR. 80% cost savings. 48h delivery.",
+    "Premium AI-powered video ads that sell. Scroll-stopping UGC and product videos for fitness & supplement Shopify brands — ready to run in 48 hours.",
   keywords: [
     "AI video ads",
     "fitness brand video",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Architect | Video Ads That Sell",
     description:
-      "Premium AI video ads for fitness & supplement brands. 4x higher CTR. 80% cost savings.",
+      "Premium AI video ads for fitness & supplement brands. Ready-to-run creative in 48 hours.",
   },
 };
 

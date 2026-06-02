@@ -64,8 +64,11 @@ export function WhyAI() {
             Why AI Video Ads
           </span>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
-            The numbers <span className="ai-text gradient-text-animated">don&apos;t lie</span>
+            Why video, <span className="ai-text gradient-text-animated">why now</span>
           </h2>
+          <p className="mt-5 text-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Industry benchmarks for short-form &amp; UGC-style video advertising.
+          </p>
         </div>
 
         {/* Stats Grid */}
