@@ -164,8 +164,8 @@ export function Portfolio() {
           </span>
           <p className="text-sm text-muted font-display tracking-wide">
             Want scroll-stopping ads like these?{" "}
-            <a href="#contact" className="text-accent font-semibold hover:text-accent-light transition-colors">
-              Claim your free demo &rarr;
+            <a href="#packages" className="text-accent font-semibold hover:text-accent-light transition-colors">
+              See plans &rarr;
             </a>
           </p>
         </div>

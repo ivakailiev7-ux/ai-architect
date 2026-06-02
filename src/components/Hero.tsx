@@ -61,10 +61,10 @@ export function Hero() {
         {/* CTAs */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-400">
           <a
-            href="#contact"
+            href="#packages"
             className="inline-flex items-center gap-2.5 rounded-full btn-gradient px-8 py-4 text-base font-semibold text-background glow-multi"
           >
-            Get Your Free Demo Ad
+            Get Started
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M3 8h10M9 4l4 4-4 4" />
             </svg>
@@ -86,8 +86,8 @@ export function Hero() {
             {[
               { value: "48h", label: "Turnaround" },
               { value: "5–10+", label: "Ad Variations" },
-              { value: "From $99", label: "Per Video" },
-            ].map((stat, i) => (
+              { value: "From $129", label: "Per Month" },
+            ].map((stat) => (
               <div key={stat.label} className="relative group">
                 <div className="glass-card rounded-2xl p-5 text-center">
                   <div className="text-3xl sm:text-4xl font-extrabold font-display gradient-text-animated">

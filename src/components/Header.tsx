@@ -47,7 +47,7 @@ export function Header() {
 
           {/* CTA */}
           <a
-            href="#contact"
+            href="#packages"
             className="hidden md:inline-flex items-center gap-2 rounded-full btn-gradient px-5 py-2.5 text-sm font-semibold text-background"
           >
             Get Started
@@ -87,7 +87,7 @@ export function Header() {
                 </a>
               ))}
               <a
-                href="#contact"
+                href="#packages"
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex items-center justify-center rounded-full btn-gradient px-5 py-3 text-sm font-semibold text-background"
               >

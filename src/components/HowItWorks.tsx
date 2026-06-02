@@ -1,9 +1,9 @@
 const steps = [
   {
     number: "01",
-    title: "Send Your Product",
+    title: "Subscribe & Send Your Product",
     description:
-      "Share your product link, photos, or brand assets. That's all I need to get started.",
+      "Pick a plan, then share your product link, photos, or brand assets. No call needed — that's all I need to get started.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
