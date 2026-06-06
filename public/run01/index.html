@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI ARCHITECT - RUN 01</title>
+<meta name="description" content="AI ARCHITECT RUN 01. A small first drop of heavyweight, architecturally built essentials. Join the waitlist for early access.">
+<link rel="icon" href="logo_v3.png">
+<meta property="og:title" content="AI ARCHITECT - RUN 01">
+<meta property="og:description" content="The first drop. Built, not branded. Join the waitlist.">
+<meta property="og:image" content="crew_front.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080808;
+    --bg-2:#0d0d0f;
+    --surface:#111114;
+    --text:#f4f5f7;
+    --muted:#8a8d94;
+    --muted-2:#62656c;
+    --accent:#2962ff;
+    --accent-soft:rgba(41,98,255,.14);
+    --line:rgba(255,255,255,.08);
+    --radius:4px;
+    --maxw:1240px;
+    --font-display:'Space Grotesk',system-ui,sans-serif;
+    --font-body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:var(--font-display);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:.01em;padding:14px 26px;border-radius:var(--radius);background:var(--accent);color:#fff;border:1px solid var(--accent);cursor:pointer;transition:transform .18s ease,filter .18s ease;white-space:nowrap}
+  .btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+  .btn:active{transform:translateY(0)}
+  .btn:disabled{opacity:.6;cursor:default;transform:none}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);filter:none}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .nav-logo{display:flex;align-items:center;gap:10px}
+  .nav-logo img{height:26px;width:auto}
+  .nav a.btn{padding:10px 18px;font-size:14px}
+  .hero{min-height:calc(100dvh - 68px);display:flex;align-items:center;padding:48px 0}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;width:100%}
+  .hero-copy .eyebrow{display:block;margin-bottom:22px}
+  .hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.9rem,7vw,5.4rem);line-height:.98;letter-spacing:-.02em;margin-bottom:22px}
+  .hero p.sub{font-size:clamp(1rem,1.4vw,1.18rem);color:var(--muted);max-width:46ch;margin-bottom:34px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-media{position:relative}
+  .hero-media img{width:100%;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2)}
+  .hero-tag{position:absolute;left:16px;bottom:16px;font-family:var(--font-display);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);background:rgba(8,8,8,.7);border:1px solid var(--line);padding:7px 12px;border-radius:var(--radius);backdrop-filter:blur(6px)}
+  section{padding:clamp(72px,11vh,128px) 0}
+  .section-head{max-width:60ch;margin-bottom:54px}
+  .section-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.04;letter-spacing:-.015em;margin-bottom:16px}
+  .section-head p{color:var(--muted);font-size:1.05rem;max-width:52ch}
+  .product{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:56px}
+  .shot{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg)}
+  .shot img{width:100%}
+  .shot figcaption{position:absolute;left:14px;bottom:14px;font-family:var(--font-display);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .details{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .detail{padding:30px 26px 30px 0;border-right:1px solid var(--line)}
+  .detail:last-child{border-right:none;padding-right:0}
+  .detail h3{font-family:var(--font-display);font-weight:600;font-size:1.12rem;margin-bottom:8px}
+  .detail p{color:var(--muted);font-size:.97rem}
+  .detail .n{font-family:var(--font-display);font-size:12px;color:var(--accent);letter-spacing:.2em;display:block;margin-bottom:14px}
+  .ethos{text-align:center}
+  .ethos .wrap{max-width:900px}
+  .ethos .mark{height:34px;width:auto;margin:0 auto 30px;opacity:.9}
+  .ethos h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.9rem,4.6vw,3.1rem);line-height:1.05;letter-spacing:-.01em;margin-bottom:22px}
+  .ethos p{color:var(--muted);font-size:1.15rem;max-width:54ch;margin:0 auto}
+  .waitlist{background:linear-gradient(180deg,var(--bg) 0%,#0a0c16 100%);border-top:1px solid var(--line)}
+  .waitlist .panel{max-width:620px;margin:0 auto;text-align:center}
+  .waitlist h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.6vw,3rem);line-height:1.05;letter-spacing:-.015em;margin-bottom:16px}
+  .waitlist p.sub{color:var(--muted);font-size:1.08rem;max-width:44ch;margin:0 auto 34px}
+  form.signup{display:flex;flex-direction:column;gap:10px;text-align:left;max-width:440px;margin:0 auto}
+  form.signup label{font-family:var(--font-display);font-size:13px;letter-spacing:.04em;color:var(--muted)}
+  form.signup input[type=email]{width:100%;background:var(--surface);border:1px solid var(--line);color:var(--text);font-size:16px;font-family:var(--font-body);padding:14px 16px;border-radius:var(--radius)}
+  form.signup input[type=email]::placeholder{color:var(--muted-2)}
+  form.signup input[type=email]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  form.signup .btn{margin-top:6px;width:100%}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .fineprint{margin-top:16px;font-size:13px;color:var(--muted-2)}
+  footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg)}
+  .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .foot-logo img{height:22px}
+  .foot-meta{font-family:var(--font-display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
+  .foot-links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+  .foot-links a:hover{color:var(--text)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .hero{min-height:auto;padding:40px 0 64px}
+    .hero-media{order:-1}
+    .shots{grid-template-columns:1fr}
+    .details{grid-template-columns:1fr}
+    .detail{border-right:none;border-bottom:1px solid var(--line);padding:24px 0}
+    .detail:last-child{border-bottom:none}
+    .foot-inner{flex-direction:column;align-items:flex-start;gap:18px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#top" aria-label="AI ARCHITECT home"><img src="logo_v3.png" alt="AI ARCHITECT"></a>
+    <a class="btn" href="#waitlist">Join the waitlist</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">RUN 01</span>
+        <h1>Built,<br>not branded.</h1>
+        <p class="sub">AI ARCHITECT's first drop. A small run of heavyweight, architecturally built essentials in black and electric blue.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#waitlist">Join the waitlist</a>
+          <a class="btn btn-ghost" href="#crewneck">See the piece</a>
+        </div>
+      </div>
+      <div class="hero-media reveal">
+        <img src="crew_front.png" alt="AI ARCHITECT RUN 01 crewneck, front" width="880" height="1100">
+        <span class="hero-tag">AIA-001 / The Crewneck</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="product" id="crewneck">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>The Crewneck</h2>
+        <p>One piece, done properly. Heavyweight cotton, a quiet logo, and a single circuit line down the sleeve.</p>
+      </div>
+      <div class="shots reveal">
+        <figure class="shot"><img src="crew_front.png" alt="Crewneck front view"><figcaption>Front</figcaption></figure>
+        <figure class="shot"><img src="crew_back.png" alt="Crewneck back view"><figcaption>Back</figcaption></figure>
+      </div>
+      <div class="details reveal">
+        <div class="detail"><span class="n">01</span><h3>Heavyweight build</h3><p>Around 400gsm structured cotton, a slightly boxy fit, ribbed cuffs and hem.</p></div>
+        <div class="detail"><span class="n">02</span><h3>Circuit-trace sleeve</h3><p>A fine electric-blue line runs the length of the arm. The signature detail, not a stripe.</p></div>
+        <div class="detail"><span class="n">03</span><h3>Quiet branding</h3><p>A tonal mark on the chest. The wordmark sits clean across the back.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ethos">
+    <div class="wrap reveal">
+      <img class="mark" src="logo_v3.png" alt="AI ARCHITECT">
+      <h2>Welcome to the build.</h2>
+      <p>Not loud logos. Engineered essentials in black and electric blue, made in small numbered runs and sold while they last.</p>
+    </div>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <div class="wrap">
+      <div class="panel reveal">
+        <h2>Be first to RUN 01.</h2>
+        <p class="sub">Join the list for early access and a launch offer, before the first run sells out.</p>
+        <form class="signup" id="waitlist-form" novalidate>
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" required placeholder="you@email.com" autocomplete="email">
+          <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn" type="submit">Join the waitlist</button>
+        </form>
+        <p class="fineprint" id="form-note">No spam. One email when RUN 01 drops.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <a class="foot-logo" href="#top"><img src="logo_v3.png" alt="AI ARCHITECT"></a>
+    <div class="foot-links">
+      <a href="https://instagram.com/ai_architectt_" target="_blank" rel="noopener">Instagram</a>
+      <a href="#waitlist">Waitlist</a>
+    </div>
+    <div class="foot-meta">AI ARCHITECT . RUN 01 . 2026</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal (IntersectionObserver, no scroll listener). Respects reduced motion.
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold:.16 });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+
+  // Waitlist submit: SAME-ORIGIN post to the existing /api/contact route (Resend).
+  // No external URL, no API key in the client -> Defender-safe pattern.
+  (function(){
+    var form = document.getElementById('waitlist-form');
+    var note = document.getElementById('form-note');
+    if(!form) return;
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var emailEl = document.getElementById('email');
+      var btn = form.querySelector('button');
+      if(!emailEl.value || !emailEl.checkValidity()){ emailEl.focus(); return; }
+      btn.disabled = true; btn.textContent = 'Joining...';
+      var data = new FormData();
+      data.append('name', 'RUN 01 Waitlist');
+      data.append('email', emailEl.value);
+      data.append('website', 'apparel-waitlist');
+      data.append('message', 'RUN 01 apparel waitlist signup');
+      data.append('botcheck', form.botcheck ? form.botcheck.value : '');
+      fetch('/api/contact', { method:'POST', body:data })
+        .then(function(r){ return r.json().catch(function(){ return {}; }); })
+        .then(function(res){
+          if(res && res.success){
+            form.style.display = 'none';
+            note.textContent = "You are on the list. Watch your inbox for RUN 01.";
+            note.style.color = 'var(--text)';
+          } else {
+            btn.disabled = false; btn.textContent = 'Join the waitlist';
+            note.textContent = 'Something went wrong. Please try again.';
+          }
+        })
+        .catch(function(){
+          btn.disabled = false; btn.textContent = 'Join the waitlist';
+          note.textContent = 'Network error. Please try again.';
+        });
+    });
+  })();
+</script>
+</body>
+</html>
