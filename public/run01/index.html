@@ -220,6 +220,37 @@
     </div>
   </section>
 
+  <style>
+    .drop{background:var(--bg)}
+    .drop-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:38px;border-radius:14px}
+    .drop-label{font-family:var(--font-display);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .drop-sizes{display:flex;flex-wrap:wrap;gap:10px}
+    .size{font-family:var(--font-display);font-size:14px;font-weight:600;border:1px solid var(--line);border-radius:var(--radius);padding:12px 0;color:var(--muted);min-width:54px;text-align:center;transition:border-color .2s,color .2s,transform .2s}
+    .size:hover{border-color:var(--accent);color:var(--text);transform:translateY(-2px)}
+    .drop-cta p{color:var(--muted);margin-bottom:18px}
+    @media(max-width:860px){.drop-grid{grid-template-columns:1fr;gap:24px;padding:26px}}
+  </style>
+  <section class="drop" id="drop">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>The first run</h2>
+        <p>RUN 01 is small and numbered. When it is gone, it is gone.</p>
+      </div>
+      <div class="drop-grid glass reveal">
+        <div>
+          <p class="drop-label">Sizing</p>
+          <div class="drop-sizes">
+            <span class="size">XS</span><span class="size">S</span><span class="size">M</span><span class="size">L</span><span class="size">XL</span><span class="size">XXL</span>
+          </div>
+        </div>
+        <div class="drop-cta">
+          <p>Launch price and early access go to the waitlist first.</p>
+          <a class="btn magnetic" href="#waitlist">Join the waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <span>AI ARCHITECT</span><b>RUN 01</b><span>BUILT NOT BRANDED</span><span>WELCOME TO THE BUILD</span>
